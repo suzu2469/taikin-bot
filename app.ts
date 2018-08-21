@@ -14,7 +14,7 @@ setInterval(() => {
   const targetTime = process.env.NOTIFY_TIME
   if (!targetTime) return console.error('Error: NOTIFY_TIME not found.')
 
-  const timeMatch = targetTime.match(/^(\d+):(\d+)$/)
+  const timeMatch = targetTime.match(/^(\d+):0?(\d+)$/)
   const targetHour = timeMatch[1]
   const targetMinute = timeMatch[2]
   if (!targetHour || !targetMinute) return console.error('Error:  NOTIFY_TIME is invalid format.')
@@ -33,6 +33,7 @@ setInterval(() => {
       },
       data: queryString.stringify({ message: 'Do taikin. Just do taikin.' })
     })
+    console.log(`Just notified.`)
   } else {
     console.log(`It isn't time now. ${currentHour}:${currentMinute}`)
   }
